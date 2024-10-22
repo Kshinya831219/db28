@@ -1,4 +1,4 @@
-package oit.is.inudaisuki.springboot_samples.security;
+package oit.is.team8.db28.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -28,10 +28,6 @@ public class Sample3AuthConfiguration {
             .logoutUrl("/logout")
             .logoutSuccessUrl("/")) // ログアウト後に / にリダイレクト
         .authorizeHttpRequests(authz -> authz
-            .requestMatchers(AntPathRequestMatcher.antMatcher("/sample3/**"))
-            .authenticated() // /sample3/以下は認証済みであること
-            .requestMatchers(AntPathRequestMatcher.antMatcher("/sample4/**"))
-            .authenticated() // /sample4/以下は認証済みであること
             .requestMatchers(AntPathRequestMatcher.antMatcher("/sample5/**"))
             .authenticated() // /sample4/以下は認証済みであること
             .requestMatchers(AntPathRequestMatcher.antMatcher("/sample58*"))
@@ -76,7 +72,7 @@ public class Sample3AuthConfiguration {
         .build();
 
     // 生成したユーザをImMemoryUserDetailsManagerに渡す（いくつでも良い）
-    return new InMemoryUserDetailsManager( customer1, customer2, seller);
+    return new InMemoryUserDetailsManager(customer1, customer2, seller);
   }
 
 }
